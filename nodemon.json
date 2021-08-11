@@ -1,0 +1,11 @@
+{
+  "ignore": ["src/**/*.spec.ts", "node_modules/*"],
+
+  "exec": "npm start",
+  "ext": "ts",
+  "events": {
+    "restart": "kill-port 3001",
+    "crash": "kill-port 3001"
+  },
+  "delay": "1500"
+}
