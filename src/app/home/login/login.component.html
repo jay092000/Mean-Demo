@@ -1,0 +1,178 @@
+<div class="login-signup flex_center">
+  <div class="login wrapper w3-animate-left" *ngIf="!signupFlag">
+    <h1 class="flex_center .mat-h1">Login</h1>
+    <form [formGroup]="loginForm">
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Ex. pat@example.com"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="
+          loginForm.controls.email.touched && !loginForm.controls.email.valid
+        "
+      >
+        <mat-error *ngIf="loginForm.get('email')?.errors?.required">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.errors?.email">
+          Please enter a valid email address
+        </mat-error>
+      </div>
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>Password</mat-label>
+        <input
+          [type]="passwordShow ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="passwordShow = !passwordShow">{{
+          passwordShow ? "visibility" : "visibility_off"
+        }}</mat-icon>
+      </mat-form-field>
+
+      <div
+        class="error"
+        *ngIf="
+          (loginForm.controls.password.invalid &&
+            loginForm.controls.password.touched) ||
+          loginForm.controls.password.dirty
+        "
+      >
+        <mat-error
+          class="text-danger"
+          *ngIf="loginForm.get('password')?.errors?.required"
+          >Password is |<strong>required</strong>.</mat-error
+        >
+      </div>
+      <div class="bottom flex_center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="accent"
+          [disabled]="!loginForm.valid"
+          (click)="loginSubmit()"
+
+        >
+          Submit
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          (click)="singupClicked()"
+        >
+          Sign-up
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="signup wrapper w3-animate-right" *ngIf="signupFlag">
+    <h1 class="flex_center .mat-h1">Sign Up</h1>
+    <form [formGroup]="signUpForm">
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="firstName" />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="
+          signUpForm.controls.firstName.touched &&
+          !signUpForm.controls.firstName.valid
+        "
+      >
+        <mat-error *ngIf="signUpForm.get('firstName')?.errors?.required">
+          First Name is <strong>required</strong>
+        </mat-error>
+      </div>
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Ex. pat@example.com"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="
+          signUpForm.controls.email.touched && !signUpForm.controls.email.valid
+        "
+      >
+        <mat-error *ngIf="signUpForm.get('email')?.errors?.required">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email')?.errors?.email">
+          Please enter a valid email address
+        </mat-error>
+      </div>
+      <mat-form-field
+        class="example-full-width full_width"
+        appearance="outline"
+      >
+        <mat-label>Password</mat-label>
+        <input
+          [type]="passwordShow ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="passwordShow = !passwordShow">{{
+          passwordShow ? "visibility" : "visibility_off"
+        }}</mat-icon>
+      </mat-form-field>
+
+      <div
+        class="error"
+        *ngIf="
+          (signUpForm.controls.password.invalid &&
+            signUpForm.controls.password.touched) ||
+          signUpForm.controls.password.dirty
+        "
+      >
+        <mat-error
+          class="text-danger"
+          *ngIf="signUpForm.get('password')?.errors?.strengthError"
+        >
+          Password must have atleast 1 digit , 1 upper , 1 lower
+        </mat-error>
+      </div>
+      <div class="bottom flex_center">
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!signUpForm.valid"
+          (click)="signUpSubmit()"
+        >
+          Submit
+        </button>
+        <button type="submit" mat-raised-button color="accent" (click)="loginClicked()">Log-In</button>
+      </div>
+    </form>
+  </div>
+</div>
