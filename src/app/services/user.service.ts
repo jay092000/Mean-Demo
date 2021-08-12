@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { loginUserInterface, signupUserInterface } from './generalInterfaces';
+import { loginUserInterface, signupUserInterface, userInterface } from './generalInterfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  public userData ?: userInterface;
   authToken = '';
   constructor(private httpClient: HttpClient) {}
   userLogin(data : loginUserInterface) {

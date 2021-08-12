@@ -85,6 +85,12 @@ export class LoginComponent implements OnInit {
       .userLogin(this.loginForm.value)
       .then((a: any) => {
         if (a.success && a.data) {
+          debugger;
+          if (a.data[0].roleId === 2) {
+            this.router.navigate(['user']);
+          } else if (a.data[0].roleId === 1) {
+            this.router.navigate(['admin']);
+          }
           this.vanillaSerivce.swal.fire({
             icon: 'success',
             text: 'welcome back!',
@@ -112,7 +118,7 @@ export class LoginComponent implements OnInit {
       .catch((e) => {
         this.vanillaSerivce.swal.fire({
           icon: 'error',
-          text: e.error.data, 
+          text: e.error.data,
         });
       });
   }
